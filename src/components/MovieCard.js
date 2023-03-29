@@ -1,15 +1,15 @@
 import React from "react"
 
+const imgUrl = "https://image.tmdb.org/t/p/original";
 
 function MovieCard(props) {
   return (
     <div className="movie_card">
         <div className="movie_cover">
-            <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${props.m.poster}`} 
- alt="" />
+            <img src={`${imgUrl}${props.m.poster_path}`} alt="" />
         </div>
         <div className="movie_cardinfo">
-            <div className="movie_title">{props.m.name}</div>
+            <div className="movie_title">{props.m.title}</div>
             <div className="movie_genre">
                 <div className="icon">
                     <svg
