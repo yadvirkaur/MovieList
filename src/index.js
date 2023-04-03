@@ -13,8 +13,12 @@ import { BrowserRouter } from "react-router-dom"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/MovieList">
       <App />
     </BrowserRouter>
   </React.StrictMode>
 );
+
+//When deploying a React application to a subdirectory (https://yadvirkaur.github.io/MovieList/), 
+//you need to set the basename prop on the Router component to the subdirectory path.
+//In this case, the basename should be set to /MovieList/
