@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -17,8 +18,8 @@ function Header() {
           />
         </svg>
       </button>
-      <a href="/MovielistApp/play.html"> <span className="logo">Movielist</span></a>
-    </header>
+      <Link className="logo" to="/">Movielist</Link>
+     </header>
 
   );
 }

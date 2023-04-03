@@ -1,10 +1,13 @@
 import React from "react"
 import user from "../pic.jpeg"
+import { Link } from "react-router-dom"
 
 function Navbar() {
+
   return (
     <div className="navbar hidden-navbar" data-navbar>
         <ul className="list">
+
           <div className="navbar_item searchbox">
             <div className="icon">
               <svg
@@ -21,11 +24,11 @@ function Navbar() {
               </svg>
             </div>
             <div className="navbar_text">
-              <input type="text" className="input" placeholder="Search" />
+              <input type="text" className="input" placeholder="Search"/>
             </div>
           </div>
-          <a href="play.html">
-            <div className="navbar_item navbar_tab">
+
+          <Link className="navbar_item navbar_tab" to="/">
               <div className="icon">
                 <svg
                   width="18"
@@ -41,11 +44,9 @@ function Navbar() {
                 </svg>
               </div>
               <div className="navbar_text">Home</div>
-            </div>
-          </a>
+          </Link>
 
-          <a href="Components/friends.html">
-            <div className="navbar_item navbar_tab">
+          <Link className="navbar_item navbar_tab" to="/Friends">
               <div className="icon">
                 <svg
                   width="14"
@@ -61,11 +62,9 @@ function Navbar() {
                 </svg>
               </div>
               <div className="navbar_text">Friends</div>
-            </div>
-          </a>
+          </Link>
 
-          <a href="Components/movies.html">
-            <div className="navbar_item navbar_tab">
+          <Link className="navbar_item navbar_tab" to="/Watchlist">
               <div className="icon">
                 <svg
                   width="16"
@@ -81,16 +80,16 @@ function Navbar() {
                 </svg>
               </div>
               <div className="navbar_text">Watchlist</div>
-            </div>
-          </a>
+          </Link>
 
           <div className="line"></div>
 
           {/* <!-----Navbar movie lists--------------------------------------------------------> */}
 
           <div className="navbar_item overline">
-            <div className="navbar_text">MOVIES</div>
+            <div className="navbar_text">MOVIE LISTS</div>
           </div>
+
           <a href="Components/ActionMovies.html">
             <div className="navbar_genre navbar_tab"> 
               <div className="navbar_text">Action</div>
