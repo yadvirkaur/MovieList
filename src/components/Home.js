@@ -24,9 +24,6 @@ const nowPlaying = "/movie/now_playing?";
 const popular = "/movie/popular?";
 const topRated = "/movie/top_rated?";
 const trendingToday= "/trending/movie/day?";
-const genre= "/genre/movie/list?"
-const query="";
-//https://api.themoviedb.org/3/search/movie?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&query=jatt
 
 function Home() {
   const [upcomingMovies, setUpcomingMovies] = React.useState([]);
@@ -58,21 +55,13 @@ function Home() {
       const data = await res.json()
       setTopRatedMovies(data.results)
     }
-    const getAllGenre = async () => {
-      const res = await fetch(`${baseUrl}${genre}${apiKey}`)
-      const data = await res.json()
-      setGenreData(data.genres)
-      
-      console.log(data.genres)
-    }
-
+   
     const fetchGenre = async () => {
       const res = await fetch(`${baseUrl}/discover/movie?${apiKey}&sort_by=popularity.desc&with_genres=878${blockContent}${language}`)
       const data = await res.json()
       setGenreData(data.results)
     }
 
-  getAllGenre();
   fetchPopular()
   fetchTrending()
   fetchUpcoming()
@@ -82,9 +71,6 @@ function Home() {
 
   return (
     <div className="App">
-      {/* <div class="container"> */}
-        {/* <Header/>
-        <Navbar/> */}
         <div class="MoviesEvents">
           <Row  title={"Trending Today"}  type={trendingMovies}/>
           <Row  title={"Upcoming Movies"}  type={upcomingMovies}/>
@@ -92,7 +78,6 @@ function Home() {
           <Row  title={"Top Rated Movies"}  type={topRatedMovies}/>
           <Row  title={"Sci-Fi"}  type={genreData}/>
         </div>
-      {/* </div> */}
     </div>
   );
 }

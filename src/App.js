@@ -8,6 +8,9 @@ import MovieDetails from "./components/MovieDetails";
 import Layout from "./components/Layout";
 import Friends from "./Pages/Friends";
 import Watchlist from "./Pages/Watchlist";
+import Genre from "./Pages/Genre";
+import Search from "./Pages/Search";
+import NotFound from "./Pages/NotFound";
 
 function App() {
   return (
@@ -18,7 +21,9 @@ function App() {
           <Route path="/:id" element={<MovieDetails />} />
           <Route path="/Friends" element={<Friends />} />
           <Route path="/Watchlist" element={<Watchlist />} />
-       
+          <Route path="/Search/:query" element={<Search />} />
+          <Route path="/Genre/:id" element={<Genre />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </div>
