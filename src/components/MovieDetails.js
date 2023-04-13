@@ -11,7 +11,8 @@ import NoImage from "../NoImage.jpg"
 const baseUrl = "https://api.themoviedb.org/3";
 const apiKey = "api_key=8d689d587d0f1c9bf7c89cc8968a7d18";
 const language = "&language=en-US";  
-const imgUrl = "https://image.tmdb.org/t/p/original";
+const imgUrl = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";
+const backgroundUrl = "https://image.tmdb.org/t/p/w1000_and_h450_multi_faces";
 const youtube= "https://www.youtube.com/watch?v=";
 
 function MovieDetails() {
@@ -107,7 +108,15 @@ function MovieDetails() {
             {movieDetails? 
                 (
                 <div className="movie-detail-grid">
+                {/* // <div className="movie-detail-grid" style={{
 
+                //     ...(window.innerWidth < 480 && {
+                //         background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${movieDetails.poster_path ? `${backgroundUrl}${movieDetails.poster_path}` : NoImage})`,
+                //         backgroundSize: "cover",
+                //         backgroundPosition: "center",
+                //         backgroundRepeat: "no-repeat"    })
+
+                //   }}>     */}
                     <div className="movie-detail-poster">
                         {/* <img className="movie-detail-img" src={`${imgUrl}${movieDetails.poster_path}`} /> */}
                         <img className="movie-detail-img" src={movieDetails.poster_path ? `${imgUrl}${movieDetails.poster_path}` : NoImage} alt="Movie Poster" />

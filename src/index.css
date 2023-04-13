@@ -34,6 +34,7 @@ body {
   width: 100%; */
 
 .container {
+  border: 1px solid greenyellow;
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-rows: 50px auto;
@@ -41,17 +42,15 @@ body {
 }
 
 .header {
-  /* border: 1px solid gray; */
+  border: 1px solid pink;
   grid-column: 1/-1;
 }
 .MoviesEvents {
-  /* border: 1px solid gray; */
+  border: 1px solid yellow;
   grid-column: 2/-1;
   overflow: hidden;
-  margin-top: 40px;
-  margin-bottom: 100px;
   padding-inline: 5vw;
-  margin-inline: auto;
+  margin: 40px auto 100px;
 }
 .navbar {
   grid-column: 1/2;
@@ -67,8 +66,6 @@ body {
   z-index: 9999;
   gap: 20px;
   padding-left: 30px;
-  /* height: var(--header-height); */
-  color: white;
   background: var(--black-color);
 }
 
@@ -99,7 +96,7 @@ body {
 /*---Navbar--------------------------------------------*/
 
 .navbar {
-  /* border: 1px solid red; */
+  border: 1px solid red;
   position: sticky;
   display: flex;
   flex-direction: column;
@@ -241,11 +238,7 @@ a {
 
 /*---Navbar toggling--------------------------------------------*/
 
-.nav-toggle {
-  display: none;
-}
-
-/* @media (min-width: 900px) {
+@media (min-width: 900px) {
   .navbar {
     opacity: 1;
     width: 100%;
@@ -255,19 +248,19 @@ a {
   .navbar.open {
     width: 0;
     opacity: 0;
-    display: none;
+    display: inline-block;
     transition: all 0.3s;
   }
-} */
+}
 
-/* @media (max-width: 900px) {
+@media (max-width: 900px) {
   .navbar {
     position: fixed;
   }
   .navbar {
     opacity: 0;
     width: 0;
-    display: none;
+    display: inline-block;
     transition: all 0.3s;
   }
   .navbar.open {
@@ -276,7 +269,7 @@ a {
     display: block;
     transition: all 0.3s;
   }
-} */
+}
 
 /*---Scroll-bars--------------------------------------------*/
 
@@ -391,15 +384,26 @@ a {
 /* ---Movie detail page------------------------------------------------ */
 
 .movie-detail-container {
+  border: 1px solid plum;
   width: auto;
   padding-inline: 5vw;
   margin: 10px auto 100px;
 }
 .movie-detail-grid {
+  border: 1px solid red;
+  width: 100%;
+  /* overflow: hidden; */
   color: var(--white-color);
-  display: grid;
+  /* display: grid;
   grid-gap: 30px;
-  grid-template-columns: 30% 70%;
+  grid-template-rows: 30% 70%; */
+}
+@media (min-width: 480px) {
+  .movie-detail-grid {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 30% 70%;
+  }
 }
 .movie-detail-poster {
   grid-column: 1/2;
@@ -426,6 +430,9 @@ a {
 }
 
 .movie-detail-info {
+  border: 1px solid yellow;
+  width: 100%;
+  /* overflow: hidden; */
   grid-column: 2/3;
   padding-block: 20px;
   display: flex;
@@ -588,7 +595,7 @@ a {
   margin-top: 7px;
 }
 .event_time {
-  /* color: var(--white-color); */
+  color: var(--white-color);
   font-weight: 600;
   margin-right: 4px;
 }
@@ -619,9 +626,7 @@ a {
   line-height: 20px;
   padding: 8px 12px;
   background: #333333;
-
   color: var(--white-color);
-  color: white;
   border-radius: 8px;
   justify-content: center;
   transition: background 0.3s;

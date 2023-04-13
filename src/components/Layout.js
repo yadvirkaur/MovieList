@@ -5,11 +5,15 @@ import Navbar from "./Navbar";
 
 
 function Layout() {
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
+  function toggleSidebar() {
+    setSidebarOpen(!sidebarOpen);
+  }
   return (
        <div class="container">
-        <Header/>
-        <Navbar/>
+        <Header toggleSidebar={toggleSidebar} />
+        <Navbar sidebarOpen={sidebarOpen}/>
         <Outlet />
       </div>
   );

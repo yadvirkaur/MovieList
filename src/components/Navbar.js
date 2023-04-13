@@ -10,7 +10,7 @@ const genre= "/genre/movie/list?"
 //Results by Genre:              https://api.themoviedb.org/3/discover/movie?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&sort_by=popularity.desc&with_genres=16&page=1
 //list of genres:                https://api.themoviedb.org/3/genre/movie/list?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&language=en-US
 
-function Navbar() {
+function Navbar(props) {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = React.useState('');
   const [genres, setGenres] = React.useState([]);
@@ -47,7 +47,7 @@ function Navbar() {
 
 
   return (
-    <div className="navbar hidden-navbar" data-navbar>
+    <div className={`navbar hidden-navbar  ${props.sidebarOpen ? "open" : ""}`}>
 
           <div className="top_sidebar">
             <div className="navbar_item searchbox">
