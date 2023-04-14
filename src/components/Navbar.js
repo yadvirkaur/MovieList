@@ -47,7 +47,7 @@ function Navbar(props) {
 
 
   return (
-    <div className={`navbar hidden-navbar  ${props.sidebarOpen ? "open" : ""}`}>
+    <div className={`navbar hidden-navbar  ${props.sidebarOpen ? "open" : "close"}`}>
 
           <div className="top_sidebar">
             <div className="navbar_item searchbox">

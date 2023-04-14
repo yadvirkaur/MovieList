@@ -39,21 +39,65 @@ body {
   grid-template-columns: 20% 80%;
   grid-template-rows: 50px auto;
   margin: 0 2%;
+  transition: all 0.3s;
 }
 
 .header {
-  border: 1px solid pink;
+  border: 1px solid red;
   grid-column: 1/-1;
 }
 .MoviesEvents {
   border: 1px solid yellow;
   grid-column: 2/-1;
   overflow: hidden;
-  padding-inline: 5vw;
+  padding-inline: 2vw;
   margin: 40px auto 100px;
+  transition: all 0.3s;
 }
 .navbar {
-  grid-column: 1/2;
+  /* grid-column: 1/2; */
+  background: var(--black-color);
+}
+
+/*---Navbar toggling--------------------------------------------*/
+
+@media (min-width: 600px) {
+  .navbar {
+    opacity: 1;
+    width: 100%;
+    transition: all 0.3s;
+  }
+  .navbar.open {
+    width: 0;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .container.open .MoviesEvents {
+    grid-column: 1/-1;
+    padding-inline: 12vw;
+    transition: all 0.3s;
+  }
+  .container.open {
+    grid-template-columns: 0% 100%;
+    transition: all 0.3s;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: 100%;
+  }
+  .navbar.open {
+    height: var(--navbar-height);
+    transition: all 0.3s;
+  }
+
+  /* adding a close class fixed the issue, now when page opens navbar is closed. Earlier it was working only on keeping it open when page loads and then toggeling*/
+  .navbar.close {
+    height: 0;
+    padding: 0;
+    transition: all 0.3s;
+  }
 }
 
 /*---Header---------------------------------------------*/
@@ -80,6 +124,7 @@ body {
   padding: 0;
   background: none;
   border: none;
+  outline: none;
 }
 
 /*---Icon---------------------------------------------*/
@@ -236,41 +281,6 @@ a {
   color: var(--grey-color);
 }
 
-/*---Navbar toggling--------------------------------------------*/
-
-@media (min-width: 900px) {
-  .navbar {
-    opacity: 1;
-    width: 100%;
-    display: block;
-    transition: all 0.3s;
-  }
-  .navbar.open {
-    width: 0;
-    opacity: 0;
-    display: inline-block;
-    transition: all 0.3s;
-  }
-}
-
-@media (max-width: 900px) {
-  .navbar {
-    position: fixed;
-  }
-  .navbar {
-    opacity: 0;
-    width: 0;
-    display: inline-block;
-    transition: all 0.3s;
-  }
-  .navbar.open {
-    opacity: 1;
-    width: 100%;
-    display: block;
-    transition: all 0.3s;
-  }
-}
-
 /*---Scroll-bars--------------------------------------------*/
 
 .navbar::-webkit-scrollbar-track,
@@ -398,13 +408,13 @@ a {
   grid-gap: 30px;
   grid-template-rows: 30% 70%; */
 }
-@media (min-width: 480px) {
+/* @media (min-width: 480px) {
   .movie-detail-grid {
     display: grid;
     grid-gap: 30px;
     grid-template-columns: 30% 70%;
   }
-}
+} */
 .movie-detail-poster {
   grid-column: 1/2;
   display: flex;
@@ -546,7 +556,7 @@ a {
   padding: 12px;
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .movie,
   .event {
     width: 90vw;
@@ -554,7 +564,7 @@ a {
   .MoviesEvents {
     padding-inline: 2vw;
   }
-}
+} */
 
 .event_card {
   display: flex;

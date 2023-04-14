@@ -11,7 +11,7 @@ function Layout() {
     setSidebarOpen(!sidebarOpen);
   }
   return (
-       <div class="container">
+       <div className={`container ${sidebarOpen ? 'open' : ''}`}>
         <Header toggleSidebar={toggleSidebar} />
         <Navbar sidebarOpen={sidebarOpen}/>
         <Outlet />
