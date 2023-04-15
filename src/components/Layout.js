@@ -13,7 +13,7 @@ function Layout() {
   return (
        <div className={`container ${sidebarOpen ? 'open' : ''}`}>
         <Header toggleSidebar={toggleSidebar} />
-        <Navbar sidebarOpen={sidebarOpen}/>
+        <Navbar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
         <Outlet />
       </div>
   );

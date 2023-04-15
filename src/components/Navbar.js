@@ -40,7 +40,7 @@ function Navbar(props) {
   //console.log(genres.length)                  
    
   const genreElement= (genres.map((genre) => (
-    <Link className=" navbar_genre navbar_tab" to={`/Genre/${genre.id}`}>
+    <Link className=" navbar_genre navbar_tab" to={`/Genre/${genre.id}`} onClick={window.innerWidth <= 600 ? props.toggleSidebar : null}>
     <li className="navbar_text" key={genre.id}>{genre.name}</li>
     </Link>
   )))
@@ -79,7 +79,7 @@ function Navbar(props) {
           </div>
 
           <div class="middle_sidebar">
-            <Link className="navbar_item navbar_tab" to="/">
+            <Link className="navbar_item navbar_tab" to="/" onClick={window.innerWidth <= 600 ? props.toggleSidebar : null}>
                 <div className="icon">
                   <svg
                     width="18"
@@ -97,7 +97,7 @@ function Navbar(props) {
                 <div className="navbar_text">Home</div>
             </Link>
 
-            <Link className="navbar_item navbar_tab" to="/Friends">
+            <Link className="navbar_item navbar_tab" to="/Friends" onClick={window.innerWidth <= 600 ? props.toggleSidebar : null}>
                 <div className="icon">
                   <svg
                     width="14"
@@ -115,7 +115,7 @@ function Navbar(props) {
                 <div className="navbar_text">Friends</div>
             </Link>
 
-            <Link className="navbar_item navbar_tab" to="/Watchlist">
+            <Link className="navbar_item navbar_tab" to="/Watchlist" onClick={window.innerWidth <= 600 ? props.toggleSidebar : null}>
                 <div className="icon">
                   <svg
                     width="16"
