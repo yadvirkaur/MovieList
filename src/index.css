@@ -1,3 +1,5 @@
+/*For fluid responsive design: https://utopia.fyi/ */
+
 :root {
   --header-height: 50px;
   --navbar-height: calc(100vh - 50px);
@@ -6,6 +8,20 @@
   --white-color: #eaeaea;
   --grey-color: #9a9a9a;
   --light-gray: #b3b3b3;
+
+  /* Step -3: 10.42px → 10.24px */
+  --step--3: clamp(0.64rem, calc(0.66rem + -0.02vw), 0.65rem);
+
+  /* Step -2: 12.50px → 12.80px */
+  --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.8rem);
+
+  /* Step -1: 15.00px → 16.00px */
+  --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1rem);
+
+  /* Step 0: 18.00px → 20.00px */
+  --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+
+  /* font-size: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem); */
 }
 
 *,
@@ -15,7 +31,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
 }
 body {
   margin: 0;
@@ -28,34 +44,24 @@ body {
 
 /*---Page_Container---------------------------------------------*/
 
-/* display: flex;
-  flex-direction: row;
-  position: relative;
-  width: 100%; */
-
 .container {
-  /* border: 1px solid greenyellow; */
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 100%;
   grid-template-rows: 50px auto;
-  margin: 0 2%;
+  margin: 0 1%;
   transition: all 0.3s;
 }
 
 .header {
-  /* border: 1px solid red; */
   grid-column: 1/-1;
 }
 .MoviesEvents {
-  /* border: 1px solid yellow; */
-  grid-column: 2/-1;
   overflow: hidden;
   padding-inline: 2vw;
   margin: 40px auto 100px;
   transition: all 0.3s;
 }
 .navbar {
-  grid-column: 1/2;
   background: var(--black-color);
 }
 
@@ -76,10 +82,12 @@ body {
   color: var(--red-color);
   font-family: "Play", sans-serif;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: var(--step-0);
 }
 
 .menu-icon-btn {
+  font-size: var(--step--1);
+  width: 1rem;
   padding: 0;
   background: none;
   border: none;
@@ -100,7 +108,6 @@ body {
 /*---Navbar--------------------------------------------*/
 
 .navbar {
-  /* border: 1px solid red; */
   position: sticky;
   display: flex;
   flex-direction: column;
@@ -133,7 +140,6 @@ ul {
 
 .navbar_item,
 .user {
-  /* border: 1px solid yellow; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,8 +173,7 @@ a {
   color: var(--white-color);
 }
 .navbar_text {
-  /* font-size: 1.4rem; */
-  font-size: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  font-size: var(--step--2);
   font-weight: 400;
   overflow: hidden;
 }
@@ -197,21 +202,10 @@ a {
 
 .overline {
   font-weight: 400;
-  font-size: 12px;
+  font-size: var(--step--2);
   letter-spacing: 0.1em;
   color: var(--grey-color);
 }
-
-/* .createlist {
-  margin-top: 20px;
-  background: var(--red-color);
-  border-radius: 8px;
-  justify-content: center;
-}
-.createlist .navbar_text {
-  font-weight: 700;
-  color: var(--black-color);
-} */
 
 .user,
 .bottom_sidebar {
@@ -230,55 +224,14 @@ a {
 
 .user_name {
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--step--2);
   line-height: 16px;
 }
 .user_handle {
   font-weight: 400;
-  font-size: 12px;
+  font-size: var(--step--3);
   line-height: 16px;
   color: var(--grey-color);
-}
-
-/*---Navbar toggling--------------------------------------------*/
-
-@media (min-width: 600px) {
-  .navbar {
-    opacity: 1;
-    width: 100%;
-    transition: all 0.3s;
-  }
-  .navbar.open {
-    width: 0;
-    opacity: 0;
-    transition: all 0.3s;
-  }
-  .container.open .MoviesEvents {
-    grid-column: 1/-1;
-    padding-inline: 12vw;
-    transition: all 0.3s;
-  }
-  .container.open {
-    grid-template-columns: 0% 100%;
-    transition: all 0.3s;
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    grid-template-columns: 100%;
-  }
-  .navbar.open {
-    height: var(--navbar-height);
-    transition: all 0.3s;
-  }
-
-  /* adding a close class fixed the issue, now when page opens navbar is closed. Earlier it was working only on keeping it open when page loads and then toggeling*/
-  .navbar.close {
-    height: 0;
-    padding: 0;
-    transition: all 0.3s;
-  }
 }
 
 /*---Scroll-bars--------------------------------------------*/
@@ -314,30 +267,28 @@ a {
   display: flex;
   flex-direction: row;
   font-weight: 400;
-  font-size: 13px;
+  font-size: var(--step--2);
   line-height: 20px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--grey-color);
   margin-bottom: 24px;
 }
-.MoviesEvents_action {
+/* .MoviesEvents_action {
   text-transform: capitalize;
   font-weight: 700;
   color: var(--red-color);
   margin-left: 14px;
-}
+} */
 
 /*---Movies--------------------------------------------*/
 
 .movie {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 16px;
+  gap: 1%;
   margin-bottom: 30px;
-  /* width: 72vw; */
   flex-wrap: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -345,10 +296,9 @@ a {
 }
 
 .movie_card {
-  min-width: 20%;
-  width: 20%;
-
-  /* margin-bottom: 20px; */
+  /* min-width: 20%;
+  width: 20%; */
+  flex: 0 0 clamp(100px, 20%, 200px);
   transition: transform 0.2s ease-out;
 }
 
@@ -357,7 +307,6 @@ a {
 }
 
 .movie_cover > img {
-  /* border: 1px solid red; */
   width: 100%;
   object-fit: cover;
   border-radius: 8px;
@@ -368,27 +317,60 @@ a {
   justify-content: left;
   align-items: center;
   font-weight: 700;
-  /* font-size: 14px; */
-  font-size: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  font-size: var(--step--2);
   line-height: 20px;
   margin-top: 14px;
 }
 
-.movie_genre {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  flex-wrap: wrap;
+.menu-icon-btn,
+.movie_card {
+  cursor: pointer;
 }
 
-.genre {
-  display: flex;
-  align-items: center;
-  height: 16px;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  color: var(--grey-color);
+/*---Navbar toggling--------------------------------------------*/
+
+@media (min-width: 600px) {
+  .container {
+    grid-template-columns: 20% 80%;
+  }
+  .navbar {
+    opacity: 1;
+    width: 100%;
+    transition: all 0.3s;
+  }
+
+  /* open is toggle or close */
+  .navbar.open {
+    width: 0;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .MoviesEvents {
+    padding-inline: 5vw;
+  }
+  .container.open .MoviesEvents {
+    grid-column: 1/-1;
+    padding-inline: 12vw;
+    transition: all 0.3s;
+  }
+  .container.open {
+    grid-template-columns: 0% 100%;
+    transition: all 0.3s;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar.open {
+    height: var(--navbar-height);
+    transition: all 0.3s;
+  }
+
+  /* adding a close class fixed the issue, now when page opens navbar is closed. Earlier it was working only on keeping it open when page loads and then toggeling*/
+  .navbar.close {
+    height: 0;
+    padding: 0;
+    transition: all 0.3s;
+  }
 }
 
 /* ---Movie detail page------------------------------------------------ */
@@ -412,7 +394,6 @@ a {
 }
 
 .movie-detail-poster {
-  /* border: 1px solid red; */
   grid-column: 1/2;
   display: flex;
   flex-direction: column;
@@ -434,13 +415,12 @@ a {
   padding: 10px;
   text-align: center;
   font-weight: 600;
-  font-size: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  font-size: var(--step--2);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
 .movie-detail-info {
-  /* border: 1px solid yellow; */
   width: 100%;
   overflow: hidden;
   grid-column: 2/3;
@@ -450,7 +430,7 @@ a {
 }
 
 .movie-detail-title {
-  font-size: 20px;
+  font-size: var(--step-0);
   font-weight: 700;
   line-height: 16px;
   margin-bottom: 10px;
@@ -459,6 +439,7 @@ a {
 .movie-detail-date-genre {
   display: flex;
   gap: 20px;
+  font-size: var(--step--2);
   letter-spacing: 0.08em;
   margin-bottom: 20px;
 }
@@ -468,6 +449,7 @@ a {
   align-items: center;
   gap: 30px;
   font-weight: 600;
+  font-size: var(--step--2);
   margin-bottom: 40px;
 }
 .movie-detail-score-trailer > * {
@@ -513,7 +495,7 @@ a {
 .close-button {
   background-color: transparent;
   border: none;
-  font-size: 16px;
+  font-size: var(--step--1);
   font-weight: 500;
   color: var(--white-color);
   cursor: pointer;
@@ -523,7 +505,7 @@ a {
 }
 
 .movie-detail-score {
-  font-size: 12px;
+  font-size: var(--step--1);
   background: rgba(255, 245, 245, 0.4);
   border-radius: 100%;
   width: 40px;
@@ -534,127 +516,12 @@ a {
 }
 
 .movie-detail-overview {
-  font-size: 11px;
+  font-size: var(--step--2);
   line-height: 16px;
   margin-top: auto;
 }
 .movie-detail-overview-heading {
-  font-size: 13px;
+  font-size: var(--step--1);
   font-weight: 600;
   letter-spacing: 0.02em;
-}
-
-/*---Events--------------------------------------------*/
-
-.event {
-  display: flex;
-  flex-direction: row;
-  gap: 18px;
-  width: 72vw;
-  flex-wrap: nowrap;
-  overflow: auto;
-  padding: 12px;
-}
-
-/* @media (max-width: 900px) {
-  .movie,
-  .event {
-    width: 90vw;
-  }
-  .MoviesEvents {
-    padding-inline: 2vw;
-  }
-} */
-
-.event_card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 30vw;
-  margin-bottom: 20px;
-  transition: transform 0.2s ease-out;
-}
-
-.event_card:hover {
-  transform: scale(1.05);
-}
-
-.event_cover > img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.event_title {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  height: 20px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  margin-top: 14px;
-}
-
-.event_description {
-  align-items: center;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  color: var(--light-gray);
-  margin-top: 7px;
-}
-.event_time {
-  color: var(--white-color);
-  font-weight: 600;
-  margin-right: 4px;
-}
-
-.event_generatedby {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  margin-top: 7px;
-  gap: 6px;
-}
-.event_generatedby .user_name {
-  font-weight: 500;
-  font-size: 13px;
-}
-
-.event_notification {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 14px;
-}
-.event_button {
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 20px;
-  padding: 8px 12px;
-  background: #333333;
-  color: var(--white-color);
-  border-radius: 8px;
-  justify-content: center;
-  transition: background 0.3s;
-}
-
-.event_button:hover {
-  background: var(--white-color);
-  color: var(--black-color);
-}
-
-.btncolor {
-}
-
-.bell {
-}
-
-.menu-icon-btn,
-.movie_card,
-.event_card {
-  cursor: pointer;
 }
