@@ -21,6 +21,7 @@ function MovieDetails(props) {
     const [videoDetails, setVideoDetails] = React.useState([])
     const [isPlaying, setIsPlaying] = React.useState(false);
     const watchUrl=`https://www.themoviedb.org/movie/${id}/watch`;
+    const [isInWatchlist, setIsInWatchlist] = React.useState(false);
 
     //let's assume you want the movie details and videos for a movie. Usually you would think you have to issue two requests. 
     //With append_to_response you can issue a single request.
@@ -49,12 +50,21 @@ function MovieDetails(props) {
                 key: video.key 
             }));
             setVideoDetails(v)
+
+            setIsInWatchlist(props.watchlist.find((movie) => movie.id === movieDetails.id))
         }
     },[movieDetails]) 
 
 
-    function handleAddToWatchlist() {
-        props.onAddToWatchlist(movieDetails);
+    function handleToggleWatchlist() {
+        
+        if (!isInWatchlist) {
+            props.onToggleWatchlist(movieDetails);
+            setIsInWatchlist(true);
+          } else {
+            props.onToggleWatchlist(movieDetails);
+            setIsInWatchlist(false);
+          }
     }
 
     function handlePlayClick() {
@@ -131,8 +141,15 @@ function MovieDetails(props) {
                                 <span className="movie-detail-score">  {Math.round((movieDetails.vote_average)*10)}% </span>
                                 <span>User Score</span>
                             </div>
-                            <div className="movie-detail-watchlist" onClick={handleAddToWatchlist} >
-                            <WatchlistIcon />
+                            <div 
+                                className="movie-detail-watchlist" 
+                                
+                               
+                            >
+                                <WatchlistIcon 
+                                    fill={isInWatchlist ? 'red' : '#eaeaea'}
+                                    onClick={handleToggleWatchlist} 
+                                 />
                             </div>
 
                             <div>
@@ -158,12 +175,13 @@ export default MovieDetails;
 
 //NOTE:---------------------------------------------------------------------------------------------------------
 
-{/* <div className="movie-detail-watchlist" onClick={props.onAddToWatchlist(movieDetails)} >
+{/* <div className="movie-detail-watchlist" onClick={props.onToggleWatchlist(movieDetails)} >
     <WatchlistIcon />
 </div> */}
 // why you can't use props.onAddToWatchlist(movieDetails) directly as an event handler is because 
 //it will call the function immediately when the component renders instead of waiting for the button 
 //to be clicked. 
 
-// By defining handleAddToWatchlist as a separate function and then passing it as the event handler 
+// By defining handleToggleWatchlist as a separate function and then passing it as the event handler 
 //to the onClick attribute of the button, you're telling React to only call the function when the button is clicked. 
+

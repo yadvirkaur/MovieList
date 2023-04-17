@@ -10,21 +10,27 @@ import Search from "./Pages/Search";
 import NotFound from "./Pages/NotFound";
 
 function App() {
-  const [watchlist, setWatchlist] = React.useState([]);
+  const [watchlist, setWatchlist] = React.useState(JSON.parse(localStorage.getItem("watchlist")) || []);
 
-  function addToWatchlist(movie) {  
-    // Check if movie is already in watchlist
-    if (!watchlist.find(item => item.id === movie.id)) {
-      console.log(`Adding movie ${movie.title} to watchlist...`);
-      setWatchlist((prevWatchlist) => [...prevWatchlist, movie]);
-  }}
-  
+  React.useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  }, [watchlist]);
+
+  function toggleWatchlist(movie) {
+    if (watchlist.find(item => item.id === movie.id)) {
+      setWatchlist((prevWatchlist) =>
+      prevWatchlist.filter(item => item.id !== movie.id));
+    } else {
+      setWatchlist((prevWatchlist) => [movie, ...prevWatchlist]);
+    }
+  }
+
   return (
     <div>
      <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist} />} />
+          <Route path="/:id" element={<MovieDetails onToggleWatchlist={toggleWatchlist} watchlist={watchlist} />} />
           <Route path="/Friends" element={<Friends />} />
           <Route path="/Watchlist" element={<Watchlist  watchlist={watchlist}/>} />
           <Route path="/Search/:query" element={<Search />} />
