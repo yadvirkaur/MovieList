@@ -28,13 +28,13 @@ function App() {
   return (
     <div>
      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<MovieDetails onToggleWatchlist={toggleWatchlist} watchlist={watchlist} />} />
-          <Route path="/Friends" element={<Friends />} />
-          <Route path="/Watchlist" element={<Watchlist  watchlist={watchlist}/>} />
-          <Route path="/Search/:query" element={<Search />} />
-          <Route path="/Genre/:id" element={<Genre />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path=":id" element={<MovieDetails onToggleWatchlist={toggleWatchlist} watchlist={watchlist} />} />
+          <Route path="Friends" element={<Friends />} />
+          <Route path="Watchlist" element={<Watchlist  watchlist={watchlist}/>} />
+          <Route path="Search/:query" element={<Search />} />
+          <Route path="Genre/:id" element={<Genre />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
