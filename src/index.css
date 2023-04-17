@@ -452,8 +452,27 @@ a {
   font-size: var(--step--2);
   margin-bottom: 40px;
 }
-.movie-detail-score-trailer > * {
+
+.movie-detail-watchlist {
+  font-size: var(--step--1);
+  background: rgba(255, 245, 245, 0.4);
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.movie-detail-watchlist:hover {
+  transform: scale(1.05);
+}
+
+.play-trailer,
+.movie-score {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 5px;
 }
@@ -508,8 +527,8 @@ a {
   font-size: var(--step--1);
   background: rgba(255, 245, 245, 0.4);
   border-radius: 100%;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
