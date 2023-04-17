@@ -3,19 +3,16 @@ import { useParams } from "react-router-dom"
 import moment from 'moment'; //for formating date
 import ReactPlayer from 'react-player/youtube'
 import { ReactComponent as PlayIcon } from '../play.svg';
+import { ReactComponent as WatchlistIcon } from '../watchlist.svg';
 import NoImage from "../NoImage.jpg"
-
-//"https://api.themoviedb.org/3/movie/76600?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&language=en-US"
-// watch providers: https://api.themoviedb.org/3/movie/76600/watch/providers?api_key=8d689d587d0f1c9bf7c89cc8968a7d18
 
 const baseUrl = "https://api.themoviedb.org/3";
 const apiKey = "api_key=8d689d587d0f1c9bf7c89cc8968a7d18";
 const language = "&language=en-US";  
 const imgUrl = "https://image.tmdb.org/t/p/w500";
-const backgroundUrl = "https://image.tmdb.org/t/p/w1000_and_h450_multi_faces";
 const youtube= "https://www.youtube.com/watch?v=";
 
-function MovieDetails() {
+function MovieDetails(props) {
     const params = useParams()
     const id = params.id;
     //console.log(params)
@@ -23,13 +20,12 @@ function MovieDetails() {
     const [genreDetails, setGenreDetails] = React.useState(null)
     const [videoDetails, setVideoDetails] = React.useState([])
     const [isPlaying, setIsPlaying] = React.useState(false);
-
     const watchUrl=`https://www.themoviedb.org/movie/${id}/watch`;
 
     //let's assume you want the movie details and videos for a movie. Usually you would think you have to issue two requests. 
     //With append_to_response you can issue a single request.
-    //https://api.themoviedb.org/3/movie/157336?api_key={api_key}
-    //https://api.themoviedb.org/3/movie/157336/videos?api_key={api_key}
+    //https://api.themoviedb.org/3/movie/76600?api_key=8d689d587d0f1c9bf7c89cc8968a7d18
+    //https://api.themoviedb.org/3/movie/157336/videos?api_key=8d689d587d0f1c9bf7c89cc8968a7d18
 
     React.useEffect(() => {
         async function getMovieDetails() {
@@ -54,14 +50,18 @@ function MovieDetails() {
             }));
             setVideoDetails(v)
         }
-    },[movieDetails])  
+    },[movieDetails]) 
+
+
+    function handleAddToWatchlist() {
+        props.onAddToWatchlist(movieDetails);
+    }
 
     function handlePlayClick() {
         setIsPlaying(!isPlaying);
       }
 
-    // To return a single element for the first trailer that matches the criteria find() is used. 
-                         
+    // To return a single element for the first trailer that matches the criteria find() is used.                 
     function watchTrailer() {
         const trailer = videoDetails.find(          
           (video) => video.type === "Trailer" && video.site === "YouTube"
@@ -71,8 +71,9 @@ function MovieDetails() {
           return (
             <div className="watch-trailer">
                 {!isPlaying && (
-                    <div onClick={handlePlayClick} className="play-icon">
+                    <div onClick={handlePlayClick} className="play-trailer">
                         <PlayIcon />
+                        Play Trailer
                     </div>
                 )}
                 {isPlaying && 
@@ -89,8 +90,7 @@ function MovieDetails() {
                             <button className="close-button">X</button>
                         </div>
                     </div>)
-                }  
-                <div>Watch Trailer</div>       
+                }     
             </div>
             
           );
@@ -99,7 +99,6 @@ function MovieDetails() {
         }
     }
 
-    
   return (
          <div className="movie-detail-container ">
         
@@ -107,16 +106,13 @@ function MovieDetails() {
                 (
                 <div className="movie-detail-grid">
                     <div className="movie-detail-poster">
-                  
+                        {/* <img className="movie-detail-img" src={movieDetails.backdrop_path ? `${imgUrl}${movieDetails.backdrop_path}` : NoImage} alt="Movie Poster" /> */}
                         <img className="movie-detail-img" 
                             src={window.innerWidth < 600 ? 
                                 (movieDetails.backdrop_path ? `${imgUrl}${movieDetails.backdrop_path}` : NoImage)
                                 : (movieDetails.poster_path ? `${imgUrl}${movieDetails.poster_path}` : NoImage)} 
                             alt="Movie Poster" />
-                        
-                        
-                        {/* <img className="movie-detail-img" src={movieDetails.backdrop_path ? `${imgUrl}${movieDetails.backdrop_path}` : NoImage} alt="Movie Poster" /> */}
-                       
+
                         <div className="movie-detail-play">
                             <a href={watchUrl}> Watch Availability</a>
                         </div>
@@ -131,11 +127,14 @@ function MovieDetails() {
                             {genreDetails? genreDetails : "Loading.."}
                         </div>
                         <div className="movie-detail-score-trailer">
-                            <div>
+                            <div className="movie-score">
                                 <span className="movie-detail-score">  {Math.round((movieDetails.vote_average)*10)}% </span>
                                 <span>User Score</span>
                             </div>
-                           
+                            <div className="movie-detail-watchlist" onClick={handleAddToWatchlist} >
+                            <WatchlistIcon />
+                            </div>
+
                             <div>
                             {watchTrailer()} 
                             </div>
@@ -146,7 +145,6 @@ function MovieDetails() {
                         <p>{movieDetails.overview}</p>
                         </div>
                     </div>
-
                 </div>
                 ) 
                 : <h1>Movie details loading ... </h1>
@@ -154,5 +152,18 @@ function MovieDetails() {
         </div>
         );
 }
-
 export default MovieDetails;
+
+
+
+//NOTE:---------------------------------------------------------------------------------------------------------
+
+{/* <div className="movie-detail-watchlist" onClick={props.onAddToWatchlist(movieDetails)} >
+    <WatchlistIcon />
+</div> */}
+// why you can't use props.onAddToWatchlist(movieDetails) directly as an event handler is because 
+//it will call the function immediately when the component renders instead of waiting for the button 
+//to be clicked. 
+
+// By defining handleAddToWatchlist as a separate function and then passing it as the event handler 
+//to the onClick attribute of the button, you're telling React to only call the function when the button is clicked. 

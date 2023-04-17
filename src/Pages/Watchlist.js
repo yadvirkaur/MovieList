@@ -1,12 +1,14 @@
 import React from "react"
+import Row from "../components/Row";
 
-function Watchlist() {
+function Watchlist(props) {
   return (
-    <div>
-       <h1>Watchlist page goes here</h1>
+      <div className="watchlist-container">
+      <div class="MoviesEvents">
+        <Row  title={"Watchlist"}  type={props.watchlist}/>
+        {props.watchlist.length === 0 && <p>Add movies to the watchlist.</p>}
+      </div>
     </div>
   );
 }
-
 export default Watchlist;
-

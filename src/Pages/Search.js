@@ -5,8 +5,7 @@ import Row from "../components/Row";
 const baseUrl = "https://api.themoviedb.org/3";
 const apiKey = "api_key=8d689d587d0f1c9bf7c89cc8968a7d18";
 const language = "&language=en-US";  
-const popularity= "&sort_by=popularity.desc";
-//const query= "https://api.themoviedb.org/3/search/movie?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&query=jatt";
+//const query= "https://api.themoviedb.org/3/search/movie?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&query=path";
 //Genre:        https://api.themoviedb.org/3/discover/movie?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&sort_by=popularity.desc&with_genres=16&page=1
 
 function Search() {
@@ -18,12 +17,6 @@ function Search() {
 
     React.useEffect(() => {
         if (query) {
-            // let url;
-            // if (!isNaN(query)) {
-            // url = `${baseUrl}/discover/movie?with_genres=${query}&${apiKey}${language}${popularity}`;
-            // } else {
-            // url = `${baseUrl}/search/movie?query=${query}&${apiKey}${language}${popularity}`;
-            // }
             
            const url = `${baseUrl}/search/movie?query=${query}&${apiKey}${language}`;
           fetch(url)
