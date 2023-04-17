@@ -11,7 +11,8 @@ import NoImage from "../NoImage.jpg"
 const baseUrl = "https://api.themoviedb.org/3";
 const apiKey = "api_key=8d689d587d0f1c9bf7c89cc8968a7d18";
 const language = "&language=en-US";  
-const imgUrl = "https://image.tmdb.org/t/p/original";
+const imgUrl = "https://image.tmdb.org/t/p/w500";
+const backgroundUrl = "https://image.tmdb.org/t/p/w1000_and_h450_multi_faces";
 const youtube= "https://www.youtube.com/watch?v=";
 
 function MovieDetails() {
@@ -81,8 +82,6 @@ function MovieDetails() {
                         controls={true}
                         width="70%"
                         height="94%"
-                        // width="100%"
-                        // height="100%"
                         onEnded={handlePlayClick}
                         className={"enlarged-video"}
                         />
@@ -107,12 +106,18 @@ function MovieDetails() {
             {movieDetails? 
                 (
                 <div className="movie-detail-grid">
-
                     <div className="movie-detail-poster">
-                        {/* <img className="movie-detail-img" src={`${imgUrl}${movieDetails.poster_path}`} /> */}
-                        <img className="movie-detail-img" src={movieDetails.poster_path ? `${imgUrl}${movieDetails.poster_path}` : NoImage} alt="Movie Poster" />
+                  
+                        <img className="movie-detail-img" 
+                            src={window.innerWidth < 600 ? 
+                                (movieDetails.backdrop_path ? `${imgUrl}${movieDetails.backdrop_path}` : NoImage)
+                                : (movieDetails.poster_path ? `${imgUrl}${movieDetails.poster_path}` : NoImage)} 
+                            alt="Movie Poster" />
+                        
+                        
+                        {/* <img className="movie-detail-img" src={movieDetails.backdrop_path ? `${imgUrl}${movieDetails.backdrop_path}` : NoImage} alt="Movie Poster" /> */}
+                       
                         <div className="movie-detail-play">
-                           
                             <a href={watchUrl}> Watch Availability</a>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ const genre= "/genre/movie/list?"
 //Results by Genre:              https://api.themoviedb.org/3/discover/movie?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&sort_by=popularity.desc&with_genres=16&page=1
 //list of genres:                https://api.themoviedb.org/3/genre/movie/list?api_key=8d689d587d0f1c9bf7c89cc8968a7d18&language=en-US
 
-function Navbar() {
+function Navbar(props) {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = React.useState('');
   const [genres, setGenres] = React.useState([]);
@@ -40,14 +40,14 @@ function Navbar() {
   //console.log(genres.length)                  
    
   const genreElement= (genres.map((genre) => (
-    <Link className=" navbar_genre navbar_tab" to={`/Genre/${genre.id}`}>
+    <Link className=" navbar_genre navbar_tab" to={`/Genre/${genre.id}`} onClick={window.innerWidth <= 600 ? props.toggleSidebar : null}>
     <li className="navbar_text" key={genre.id}>{genre.name}</li>
     </Link>
   )))
 
 
   return (
-    <div className="navbar hidden-navbar" data-navbar>
+    <div className={`navbar hidden-navbar  ${props.sidebarOpen ? "open" : "close"}`}>
 
           <div className="top_sidebar">
             <div className="navbar_item searchbox">
@@ -79,7 +79,7 @@ function Navbar() {
           </div>
 
           <div class="middle_sidebar">
-            <Link className="navbar_item navbar_tab" to="/">
+            <Link className="navbar_item navbar_tab" to="/" onClick={window.innerWidth <= 600 ? props.toggleSidebar : null}>
                 <div className="icon">
                   <svg
                     width="18"
@@ -97,7 +97,7 @@ function Navbar() {
                 <div className="navbar_text">Home</div>
             </Link>
 
-            <Link className="navbar_item navbar_tab" to="/Friends">
+            <Link className="navbar_item navbar_tab" to="/Friends" onClick={window.innerWidth <= 600 ? props.toggleSidebar : null}>
                 <div className="icon">
                   <svg
                     width="14"
@@ -115,7 +115,7 @@ function Navbar() {
                 <div className="navbar_text">Friends</div>
             </Link>
 
-            <Link className="navbar_item navbar_tab" to="/Watchlist">
+            <Link className="navbar_item navbar_tab" to="/Watchlist" onClick={window.innerWidth <= 600 ? props.toggleSidebar : null}>
                 <div className="icon">
                   <svg
                     width="16"

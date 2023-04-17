@@ -1,14 +1,21 @@
 import React from "react"
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
+  // const [sidebarOpen, setSidebarOpen] = React.useState(false);
+
+  // const handleClick = () => {
+  //   setSidebarOpen(!sidebarOpen);
+  // };
+
+  
   return (
      <header className="header">
-      <button className="menu-icon-btn" data-menu-icon-btn>
+      <button className="menu-icon-btn" onClick={props.toggleSidebar}>
         <svg
           fill="none"
-          width="1.8rem"
-          height="1.8rem"
+          // width="1.8rem"
+          // height="1.8rem"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
         >
